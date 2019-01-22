@@ -1,6 +1,6 @@
 # Song Recommender
 
-This is a personal project to analyze song playlist data build a song 
+This is a personal project to analyze song playlist data to build a song 
 recommender.
 
 ## Data
@@ -36,3 +36,12 @@ The goal of this project is to create a recommender system that takes
 user song input(s) and suggests another song that the user may like.
 
 ## Instructions
+1. Install Python3.
+2. Save the following files in the same directory:
+	* playlist_song_mat_train.pkl
+	* song_recommender.py
+3. Open the command prompt.
+4. In the command prompt, navigate to the working directory where the
+files from step 2 are located.
+5. Type 'python song_recommender.py'
+6. Follow the prompts.

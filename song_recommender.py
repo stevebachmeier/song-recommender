@@ -13,10 +13,9 @@ import pandas as pd
 
 #==============================================================================
 #
-# LOAD DATAFRAMES
+# LOAD DATAFRAME
 #
 #==============================================================================
-df_playlists_train = dill.load(open("df_playlists_train.pkl", "rb"))
 playlist_song_mat_train = dill.load(open("playlist_song_mat_train.pkl", "rb"))     
 
 #==============================================================================
@@ -25,12 +24,13 @@ playlist_song_mat_train = dill.load(open("playlist_song_mat_train.pkl", "rb"))
 #
 #==============================================================================
 # Ask for song or band
+print('\n')
 song_band_inquiry = input('Name a song or band: ').lower()
 
 # Show options
 options = pd.DataFrame([col for col in playlist_song_mat_train.columns if song_band_inquiry in col])[0]
-print('Suggestions:')
 print('\n')
+print('Suggestions:')
 print(options)
 
 # Obtain user input
@@ -57,6 +57,7 @@ while True:
 # RECOMMEND
 #
 #==============================================================================
+print('\n')
 print('Top 3 suggested songs: ')
 for x_song_band, x_count in \
     playlist_song_mat_train[playlist_song_mat_train[song_band_choice]==1]\
