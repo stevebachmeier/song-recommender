@@ -33,7 +33,7 @@ Sequence Modeling, ACM Conference on Knowledge Discovery and Data Mining
 
 ## Goal
 The goal of this project is to create a recommender system that takes 
-user song input(s) and suggests another song that the user may like.
+one song and suggests others.
 
 ## Instructions
 1. Install Python3.

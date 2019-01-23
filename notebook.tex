@@ -1,0 +1,1072 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Report\_song\_recommender}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Song Recommender}\label{song-recommender}
+
+Steve Bachmeier 2019-01-22
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}53}]:} \PY{c+c1}{\PYZsh{} Code to run for report}
+         
+         \PY{c+c1}{\PYZsh{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+         \PY{c+c1}{\PYZsh{} Run the following two lines to hide the In[] and Out[] margin. }
+         \PY{c+c1}{\PYZsh{} Doing so will not allow headings to be collapsed.}
+         
+         \PY{c+c1}{\PYZsh{}from IPython.core.display import display,HTML}
+         \PY{c+c1}{\PYZsh{}display(HTML(\PYZsq{}\PYZlt{}style\PYZgt{}.prompt\PYZob{}width: 0px; min\PYZhy{}width: 0px; visibility: collapse\PYZcb{}\PYZlt{}/style\PYZgt{}\PYZsq{}))}
+         
+         \PY{c+c1}{\PYZsh{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+         \PY{c+c1}{\PYZsh{} Run the following lines}
+         
+         \PY{c+c1}{\PYZsh{} Import libraries}
+         \PY{k+kn}{import} \PY{n+nn}{dill}
+         \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+         
+         \PY{c+c1}{\PYZsh{} Load}
+         \PY{n}{df\PYZus{}playlists\PYZus{}train} \PY{o}{=} \PY{n}{dill}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{df\PYZus{}playlists\PYZus{}train.pkl}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rb}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+         \PY{n}{playlist\PYZus{}song\PYZus{}mat\PYZus{}train} \PY{o}{=} \PY{n}{dill}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{playlist\PYZus{}song\PYZus{}mat\PYZus{}train.pkl}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rb}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsection{1 Synopsis}\label{synopsis}
+
+    A basic song recommender system was built using a 1.8+ million row
+dataset that was scraped in late 2010 / early 2011. The user inputs a
+specific song and the program suggestions three songs. These
+recommendations are the songs that show up the most in all playlists
+that include the song of interest.
+
+A working example of the recommender is below:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{} EXAMPLE \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        
+        \PY{c+c1}{\PYZsh{} Ask for song or band}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{song\PYZus{}band\PYZus{}inquiry} \PY{o}{=} \PY{n+nb}{input}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Name a song or band: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{lower}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Show options}
+        \PY{n}{options} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{[}\PY{n}{col} \PY{k}{for} \PY{n}{col} \PY{o+ow}{in} \PY{n}{playlist\PYZus{}song\PYZus{}mat\PYZus{}train}\PY{o}{.}\PY{n}{columns} \PY{k}{if} \PY{n}{song\PYZus{}band\PYZus{}inquiry} \PY{o+ow}{in} \PY{n}{col}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Suggestions:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{options}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Obtain user input}
+        \PY{k}{while} \PY{k+kc}{True}\PY{p}{:}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{options}
+            \PY{k}{try}\PY{p}{:}
+                \PY{n}{song\PYZus{}band\PYZus{}number} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{input}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{What number? }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+            \PY{k}{except}\PY{p}{:}
+                \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{*** Must input an integer. ***}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                \PY{k}{continue}
+            \PY{k}{else}\PY{p}{:} 
+                \PY{k}{if} \PY{p}{(}\PY{n}{song\PYZus{}band\PYZus{}number} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{options}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                    \PY{n}{song\PYZus{}band\PYZus{}choice} \PY{o}{=} \PY{n}{options}\PY{p}{[}\PY{n}{song\PYZus{}band\PYZus{}number}\PY{p}{]}
+                    \PY{k}{break}
+                \PY{k}{else}\PY{p}{:}
+                    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{*** Choose a number from the table. ***}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                    \PY{k}{continue}
+        			
+        \PY{c+c1}{\PYZsh{}==============================================================================}
+        \PY{c+c1}{\PYZsh{}}
+        \PY{c+c1}{\PYZsh{} RECOMMEND}
+        \PY{c+c1}{\PYZsh{}}
+        \PY{c+c1}{\PYZsh{}==============================================================================}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Top 3 suggested songs: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{k}{for} \PY{n}{x\PYZus{}song\PYZus{}band}\PY{p}{,} \PY{n}{x\PYZus{}count} \PY{o+ow}{in} \PYZbs{}
+            \PY{n}{playlist\PYZus{}song\PYZus{}mat\PYZus{}train}\PY{p}{[}\PY{n}{playlist\PYZus{}song\PYZus{}mat\PYZus{}train}\PY{p}{[}\PY{n}{song\PYZus{}band\PYZus{}choice}\PY{p}{]}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{]}\PYZbs{}
+                \PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{,}\PY{p}{]}\PY{o}{.}\PY{n}{iteritems}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ * }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{x\PYZus{}song\PYZus{}band}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+
+Name a song or band: Maroon 5
+
+
+Suggestions:
+0                         give a little more [maroon 5]
+1              happy christmas (war is over) [maroon 5]
+2                          harder to breathe [maroon 5]
+3     if i never see your face again [maroon 5 \& rih{\ldots}
+4                            makes me wonder [maroon 5]
+5                                     misery [maroon 5]
+6                 never gonna leave this bed [maroon 5]
+7                          she will be loved [maroon 5]
+8                             sunday morning [maroon 5]
+9                                  this love [maroon 5]
+10                              wake up call [maroon 5]
+11                 won't go home without you [maroon 5]
+Name: 0, dtype: object
+
+
+What number? 6
+
+
+Top 3 suggested songs: 
+ *  for the first time [the script]
+ *  rolling in the deep [adele]
+ *  grenade [bruno mars]
+
+    \end{Verbatim}
+
+    \subsection{2 Overview}\label{overview}
+
+    \subsubsection{2.1 Background}\label{background}
+
+    Recommender systems are one of the most common applications I try and
+describe when asked just what a data scientist does. From Netflix's
+movie suggestions to targeted advertising, it often seems like
+technology knows what we want even before we do. I thought it would be
+fun to try and build such a system. For this project, I used playlist
+data to offer song suggestions to a user-input song.
+
+    \subsubsection{2.2 Data}\label{data}
+
+    I was surprised to find that there is not a lot of widely available and
+open song/playlist data. I initially thought I could use Spotify's
+Million Song Playlist competition data, but it unfortunately is not yet
+available for non-competitors. Kaggle has a very large 90+ million row
+set that I started using, but it is primarily Russian and I do not have
+the computer resources to translate such a large dataset (although
+Google's translator package worked admirably during my brief testing).
+
+I settled on a moderately large (\textasciitilde{}11000 playlists
+consisting of \textasciitilde{}1.88 million songs) dataset that was
+scraped in late 2010/early 2011. The raw data was collected by Shuo Chen
+from Cornell University's Department of Computer Science. Specifically,
+playlist and tag data was scraped from Yes.com and Last.fm,
+respectively; Yes.com and Last.fm thus owns the data.
+
+Dataset location:
+https://www.cs.cornell.edu/\textasciitilde{}shuochen/lme/data\_page.html
+
+\subsubsection{References}\label{references}
+
+{[}1{]} Shuo Chen, Joshua L. Moore, Douglas Turnbull, Thorsten Joachims,
+Playlist Prediction via Metric Embedding, ACM Conference on Knowledge
+Discovery and Data Mining (KDD), 2012.
+
+{[}2{]} Joshua L. Moore, Shuo Chen, Thorsten Joachims, Douglas Turnbull,
+Learning to Embed Songs and Tags for Playlists Prediction, International
+Society for Music Information Retrieval (ISMIR), 2012.
+
+{[}3{]} Shuo Chen, Jiexun Xu, Thorsten Joachims, Multi-space
+Probabilistic Sequence Modeling, ACM Conference on Knowledge Discovery
+and Data Mining (KDD), 2013.
+
+    \subsubsection{2.3 Goal}\label{goal}
+
+    The goal of this project is to make song recommendations based on a
+single user-input song.
+
+Note that the approach taken is very simple and can certainly be
+improved upon; I am more interested in the thought process that goes
+into such applications rather than a super robust and accurate model.
+
+    \subsection{3 Model creation}\label{model-creation}
+
+This section outlines the analysis completed. Refer to Section \ref{a1}
+for relevant code.
+
+    \subsubsection{3.1 Data preparation}\label{data-preparation}
+
+    The raw dataset is a simple .csv file where the first two rows are
+useless for this analysis, the third consists of unique playlist IDs,
+and the rest include song IDs for each playlist. These song IDs are tied
+to their respective song/band information via the song\_hash.txt file.
+
+A summary of the data preparation process is below:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Read in the raw data.
+\item
+  Split the each row's values, convert to integer, and compile into a
+  list.
+\item
+  Flatmap the playlists list and convert to a dataframe.
+\item
+  Insert a primary key column of index numbers.
+\item
+  Merge the song\_hash.txt file onto the dataframe.
+\item
+  Reset the index (since the merge method changes the order of things).
+\end{enumerate}
+
+At this point we have a tidy dataframe consisting of 1,887,938 rows and
+5 columns (index, playlist, song\_id, song, and band).
+
+    \subsubsection{3.2 Exploratory data
+analysis}\label{exploratory-data-analysis}
+
+It is always a good idea to do at least a bit of exploratory data
+analysis; creating visualizations can uncover interesting trends and
+also help guide further analysis. We can start by looking at the
+distribution of songs as shown by the histogram below.
+
+    
+
+    There is a huge spike at lower song counts which means that there are
+many unique songs that show up a small number of times in the dataset.
+The histogram below shows the same data but zoomed into song counts
+between 1-25.
+
+    
+
+    The plot above shows that there are a particularly large amount of songs
+(quantity) that show up five or less times in the dataset. A final song
+count histogram but zoomed into song counts between 5-20 is shown below.
+
+    
+
+    A similar set of histograms can be created for unique bands instead of
+songs. These are shown below.
+
+    
+
+    
+
+    \subsubsection{3.3 Data cleaning}\label{data-cleaning}
+
+    The following steps are taken to clean the data: 1. Create and merge a
+song count vector onto the dataframe. 2. Pare the data by removing any
+unique songs that show up less than six times in the dataset. 3. Check
+for any null and NA values (there are none). 4. Check for and remove any
+songs and/or bands labeled "-". 5. Check for and remove any songs and/or
+bands labeled "" or " ". 6. Remove any escape characters "". 7. Replace
+any square brackets "{[} {]}" with parentheses "( )". 8. Lower the case
+of song and band labels. 9. Add a new column "song\_band" and
+concatenate the song and band strings like "song {[}band{]}".
+
+    At this point, the tidy and clean dataset looks like:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{n}{df\PYZus{}playlists\PYZus{}train}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}40}]:}    index  playlist  song\_id  \textbackslash{}
+         0      0         0        0   
+         1      1         0        1   
+         2      2         0        2   
+         3      3         0        3   
+         4      4         0        4   
+         
+                                                         song        band  \textbackslash{}
+         0                        gucci time (w/ swizz beatz)  gucci mane   
+         1  aston martin music (w/ drake \& chrisette miche{\ldots}   rick ross   
+         2                       get back up (w/ chris brown)        t.i.   
+         3                  hot toddy (w/ jay-z \& ester dean)       usher   
+         4                                       whip my hair      willow   
+         
+                                                    song\_band  count  
+         0           gucci time (w/ swizz beatz) [gucci mane]    138  
+         1  aston martin music (w/ drake \& chrisette miche{\ldots}   2833  
+         2                get back up (w/ chris brown) [t.i.]    297  
+         3          hot toddy (w/ jay-z \& ester dean) [usher]    502  
+         4                              whip my hair [willow]    700  
+\end{Verbatim}
+            
+    \subsubsection{3.4 Build the recommender
+system}\label{build-the-recommender-system}
+
+    The first step in building the actual song recommender is to create a
+playlist-song matrix where each row represents a specific playlist and
+each column is a dummy variable for each unique song. The values of each
+cell is then binary (either 0 or 1) and represents whether or not a
+specific song shows up in a specific playlist. Note that this is a
+sparse matrix.
+
+First, the song dummy variables are created using Pandas'
+\emph{get\_dummies()} method. Then, index and playlist number columns
+are inserted. Once this matrix is created, it is converted to a dask
+dataframe which allows for parallel computing. Doing this, in addition
+to deleting dataframes that are no longer required, clears up memory
+errors I was initially getting on my personal laptop.
+
+The song-playlist dataframe is then grouped by playlist with the cells
+consisting of the aggregate \emph{sum()} function. All non-zero sums are
+in turn converted to ones (I didn't want to over-weight songs that
+mistakenly are included multiple times in the same playlist(s)).
+
+The final step is then to take a user-input song and filter the
+song-playlist dataframe to only return playlists that include that song.
+The \emph{sum()} function is finally applied to this filtered dataset
+across every column to provide sums of every song in that reduced
+dataframe (note that most are still zero). The recommendations are thus
+the songs that show up the most among all playlists that contain the
+song of interest!
+
+    \subsection{4 Recommendation / final
+validation}\label{recommendation-final-validation}
+
+    As explained in the previous section, the song recommendations are
+simply the songs that show up the most among all playlists that contain
+the song of interest. No attempt has been made to increase accuracy of
+recommendations by, say, analyzing the accompanying tags datasets.
+
+Indeed, at this point in time, no attempt has been made to validate the
+recommender on the available test dataset. An outline of one approach to
+validate the program is outlined here:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Use all or a sample of playlists from the test set.
+\item
+  From the chosen test set data, extract all or a sample of unique
+  songs.
+\item
+  Run the selected songs through the recommender.
+\item
+  For each selected song, compare the recommendations to the actual
+  songs that exist in the test playlists.
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  As an example, the accuracy of a single recommendation to \emph{song
+  i} might be:
+\end{itemize}
+
+\[
+  \left.accuracy_i = \frac{count(song_i)}{count(songs)}\right\vert_{playlist_i}
+  \]
+
+Even without having validated it, the recommender does seem to work
+reasonably well. If I look for suggestions based on a rock and roll song
+such as, for example, "Sweet Child o' Mine" by Guns n' Roses, I indeed
+get rock and roll suggestions:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}43}]:} \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{} EXAMPLE \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+         
+         \PY{c+c1}{\PYZsh{} Ask for song or band}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{song\PYZus{}band\PYZus{}inquiry} \PY{o}{=} \PY{n+nb}{input}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Name a song or band: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{lower}\PY{p}{(}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Show options}
+         \PY{n}{options} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{[}\PY{n}{col} \PY{k}{for} \PY{n}{col} \PY{o+ow}{in} \PY{n}{playlist\PYZus{}song\PYZus{}mat\PYZus{}train}\PY{o}{.}\PY{n}{columns} \PY{k}{if} \PY{n}{song\PYZus{}band\PYZus{}inquiry} \PY{o+ow}{in} \PY{n}{col}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Suggestions:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{options}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Obtain user input}
+         \PY{k}{while} \PY{k+kc}{True}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{options}
+             \PY{k}{try}\PY{p}{:}
+                 \PY{n}{song\PYZus{}band\PYZus{}number} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{input}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{What number? }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+             \PY{k}{except}\PY{p}{:}
+                 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{*** Must input an integer. ***}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                 \PY{k}{continue}
+             \PY{k}{else}\PY{p}{:} 
+                 \PY{k}{if} \PY{p}{(}\PY{n}{song\PYZus{}band\PYZus{}number} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{options}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                     \PY{n}{song\PYZus{}band\PYZus{}choice} \PY{o}{=} \PY{n}{options}\PY{p}{[}\PY{n}{song\PYZus{}band\PYZus{}number}\PY{p}{]}
+                     \PY{k}{break}
+                 \PY{k}{else}\PY{p}{:}
+                     \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                     \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{*** Choose a number from the table. ***}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                     \PY{k}{continue}
+         			
+         \PY{c+c1}{\PYZsh{}==============================================================================}
+         \PY{c+c1}{\PYZsh{}}
+         \PY{c+c1}{\PYZsh{} RECOMMEND}
+         \PY{c+c1}{\PYZsh{}}
+         \PY{c+c1}{\PYZsh{}==============================================================================}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Top 3 suggested songs: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{k}{for} \PY{n}{x\PYZus{}song\PYZus{}band}\PY{p}{,} \PY{n}{x\PYZus{}count} \PY{o+ow}{in} \PYZbs{}
+             \PY{n}{playlist\PYZus{}song\PYZus{}mat\PYZus{}train}\PY{p}{[}\PY{n}{playlist\PYZus{}song\PYZus{}mat\PYZus{}train}\PY{p}{[}\PY{n}{song\PYZus{}band\PYZus{}choice}\PY{p}{]}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{]}\PYZbs{}
+                 \PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{,}\PY{p}{]}\PY{o}{.}\PY{n}{iteritems}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ * }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{x\PYZus{}song\PYZus{}band}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+
+Name a song or band: sweet child o' mine
+
+
+Suggestions:
+0    sweet child o' mine [guns n' roses]
+Name: 0, dtype: object
+
+
+What number? 0
+
+
+Top 3 suggested songs: 
+ *  welcome to the jungle [guns n' roses]
+ *  sweet emotion [aerosmith]
+ *  dream on [aerosmith]
+
+    \end{Verbatim}
+
+    On the other hand, if I look for recommendations based on a rap song
+like "Boyz-n-the-Hood" By Eazy-E the program offers raps songs:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}52}]:} \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{} EXAMPLE \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+         
+         \PY{c+c1}{\PYZsh{} Ask for song or band}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{song\PYZus{}band\PYZus{}inquiry} \PY{o}{=} \PY{n+nb}{input}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Name a song or band: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{lower}\PY{p}{(}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Show options}
+         \PY{n}{options} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{[}\PY{n}{col} \PY{k}{for} \PY{n}{col} \PY{o+ow}{in} \PY{n}{playlist\PYZus{}song\PYZus{}mat\PYZus{}train}\PY{o}{.}\PY{n}{columns} \PY{k}{if} \PY{n}{song\PYZus{}band\PYZus{}inquiry} \PY{o+ow}{in} \PY{n}{col}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Suggestions:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{options}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Obtain user input}
+         \PY{k}{while} \PY{k+kc}{True}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{options}
+             \PY{k}{try}\PY{p}{:}
+                 \PY{n}{song\PYZus{}band\PYZus{}number} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{input}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{What number? }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+             \PY{k}{except}\PY{p}{:}
+                 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{*** Must input an integer. ***}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                 \PY{k}{continue}
+             \PY{k}{else}\PY{p}{:} 
+                 \PY{k}{if} \PY{p}{(}\PY{n}{song\PYZus{}band\PYZus{}number} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{options}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                     \PY{n}{song\PYZus{}band\PYZus{}choice} \PY{o}{=} \PY{n}{options}\PY{p}{[}\PY{n}{song\PYZus{}band\PYZus{}number}\PY{p}{]}
+                     \PY{k}{break}
+                 \PY{k}{else}\PY{p}{:}
+                     \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                     \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{*** Choose a number from the table. ***}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                     \PY{k}{continue}
+         			
+         \PY{c+c1}{\PYZsh{}==============================================================================}
+         \PY{c+c1}{\PYZsh{}}
+         \PY{c+c1}{\PYZsh{} RECOMMEND}
+         \PY{c+c1}{\PYZsh{}}
+         \PY{c+c1}{\PYZsh{}==============================================================================}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Top 3 suggested songs: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{k}{for} \PY{n}{x\PYZus{}song\PYZus{}band}\PY{p}{,} \PY{n}{x\PYZus{}count} \PY{o+ow}{in} \PYZbs{}
+             \PY{n}{playlist\PYZus{}song\PYZus{}mat\PYZus{}train}\PY{p}{[}\PY{n}{playlist\PYZus{}song\PYZus{}mat\PYZus{}train}\PY{p}{[}\PY{n}{song\PYZus{}band\PYZus{}choice}\PY{p}{]}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{]}\PYZbs{}
+                 \PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{,}\PY{p}{]}\PY{o}{.}\PY{n}{iteritems}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ * }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{x\PYZus{}song\PYZus{}band}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+
+Name a song or band: boyz-n
+
+
+Suggestions:
+0    boyz-n-the hood [dynamite hack]
+1           boyz-n-the hood [eazy-e]
+Name: 0, dtype: object
+
+
+What number? 1
+
+
+Top 3 suggested songs: 
+ *  deuces [chris brown \& tyga]
+ *  black and yellow [wiz khalifa]
+ *  what's my name (w/ drake) [rihanna]
+
+    \end{Verbatim}
+
+    \subsection{5 Next steps}\label{next-steps}
+
+As mentioned above, this analysis is very simple and there is ample room
+for improvement should it be desired. Some recommendations to improve
+this analysis include:
+
+\begin{itemize}
+\tightlist
+\item
+  Validate the model. Refer to the above section for an outline of how
+  this might be done.
+\item
+  Analyze the effects of filtering out different song count values.
+\item
+  Analyze and use the accompanying tags datasets to increase
+  recommendation accuracy.
+\item
+  Further clean the text data to better deal with mis-spellings, special
+  characters, etc.
+\item
+  Find and incorporate genre data to more heavily weight songs of the
+  same genre.
+\item
+  Find and incorporate ratings data to more heavily weight songs with
+  higher ratings.
+\end{itemize}
+
+    \section{Appendix}\label{appendix}
+
+    \subsection{A1 Code}\label{a1-code}
+
+    \begin{verbatim}
+#==============================================================================
+#
+# IMPORT LIBRARIES
+# 
+#==============================================================================
+import time
+import pandas as pd
+#pd.options.display.max_columns = None # Shows all columns
+import string as str
+import numpy as np
+import matplotlib.pyplot as plt
+import dill
+import dask
+import dask.dataframe as dd
+import re
+from pprint import pprint
+
+#==============================================================================
+# 
+# READ/EXTRACT RAW DATA
+# 
+#==============================================================================
+
+file_train = 'data/dataset/yes_complete/train.txt'
+
+with open(file_train) as f:
+    train_raw = f.readlines()
+    
+playlists_train_raw = train_raw[2:]
+
+# How many unique playlists?
+print('There are ', len(playlists_train_raw), ' playlists.', sep='')
+
+# Split and convert to integers
+playlists_train_list = []
+for i in range(0, len(playlists_train_raw)):
+    playlists_train_list.append(list(map(int, playlists_train_raw[i].split())))
+    
+# Flatmap the playlists list
+df_playlists_train = []
+for i in range(0, len(playlists_train_list)):
+    for j in range(0, len(playlists_train_list[i])):
+        df_playlists_train.append([i, playlists_train_list[i][j]])
+        
+df_playlists_train = pd.DataFrame(df_playlists_train, columns=['playlist', 'song_id'])
+
+# Create index primary key
+df_playlists_train.insert(loc=0, column='index', value=df_playlists_train.index)
+
+# ---- Merge songs on song_id ----
+df_song_hash = pd.read_table('data/dataset/yes_complete/song_hash.txt', header=None, names=['song_id','song','band'])
+
+df_playlists_train = df_playlists_train.merge(df_song_hash, on='song_id')
+df_playlists_train.sort_values('index', inplace=True)
+df_playlists_train.reset_index(drop=True, inplace=True)
+
+#==============================================================================
+#
+# EDA
+# 
+#==============================================================================
+
+song_count = df_playlists_train.groupby(['song_id','song','band']).count().reset_index().drop(columns='index')
+song_count.columns = ['song_id','song','band','count']
+song_count = song_count.sort_values('count', ascending=False)
+song_count.reset_index(inplace=True)
+song_count = song_count[['song_id','song','band','count']]
+
+%matplotlib qt
+plt.figure(figsize=(10,4))
+song_count['count'].hist(bins=70)
+plt.xlabel('Song count')
+plt.ylabel('Quantity')
+plt.title('')
+plt.rcParams.update({'font.size': 120})
+
+%matplotlib qt
+plt.figure(figsize=(10,4))
+song_count['count'].hist(bins=10000)
+plt.xlabel('Song count')
+plt.ylabel('Quantity')
+plt.title('')
+plt.xlim(0,25)
+plt.rcParams.update({'font.size': 10})
+
+%matplotlib qt
+plt.figure(figsize=(10,4))
+song_count[song_count['count'] > 5]['count'].hist(bins=5000)
+plt.xlabel('Song count')
+plt.ylabel('Quantity')
+plt.title('')
+plt.xlim(5,20)
+plt.rcParams.update({'font.size': 40})
+
+band_count = pd.DataFrame(df_playlists_train.groupby('band')['playlist'].count().sort_values(ascending=False))
+band_count.reset_index(inplace=True)
+band_count.columns = ['band','count']
+
+%matplotlib qt
+plt.figure(figsize=(10,4))
+band_count['count'].hist(bins=70)
+plt.xlabel('Band count')
+plt.ylabel('Quantity')
+plt.title('')
+plt.rcParams.update({'font.size': 40})
+
+%matplotlib qt
+plt.figure(figsize=(10,4))
+band_count['count'].hist(bins=1000)
+plt.xlabel('Band count')
+plt.ylabel('Quantity')
+plt.title('')
+plt.xlim(0,100)
+plt.rcParams.update({'font.size': 40})
+
+#==============================================================================
+#
+# CLEAN DATA
+# 
+#==============================================================================
+
+# Add count column
+df_playlists_train = pd.merge(df_playlists_train, song_count)
+df_playlists_train.sort_values(by='index', inplace=True)
+df_playlists_train.reset_index(drop=True, inplace=True)
+
+# ---- PARE DATA ----
+# Remove songs that show up less than 6 times
+df_playlists_train = df_playlists_train[df_playlists_train['count']>=6]
+
+# ---- CHECK FOR NULLS ----
+df_playlists_train.isnull().sum().sum()
+df_playlists_train.isna().sum().sum()
+
+# ---- REMOVE "", " ", "-" ----
+df_playlists_train[df_playlists_train['song'] == '-'].head()
+df_playlists_train.drop(df_playlists_train[df_playlists_train['song']=='-'].index, inplace=True)
+df_playlists_train[df_playlists_train['song'] == '-']
+
+df_playlists_train[df_playlists_train['band'] == '-'].head()
+df_playlists_train.drop(df_playlists_train[df_playlists_train['band']=='-'].index, inplace=True)
+df_playlists_train[df_playlists_train['band']=='-']
+
+df_playlists_train[df_playlists_train['song']=='']
+df_playlists_train[df_playlists_train['band']=='']
+df_playlists_train[df_playlists_train['song']==' ']
+df_playlists_train[df_playlists_train['band']==' ']
+
+# ---- REMOVE ESCAPE CHARACTER '\' ----
+df_playlists_train['song'] = [x.replace("\\","") for x in df_playlists_train['song']]
+df_playlists_train['band'] = [x.replace("\\","") for x in df_playlists_train['band']]
+
+# REPLACE [] WITH ()
+df_playlists_train['song'] = [x.replace("[","(") for x in df_playlists_train['song']]
+df_playlists_train['song'] = [x.replace("]",")") for x in df_playlists_train['song']]
+df_playlists_train['band'] = [x.replace("[","(") for x in df_playlists_train['band']]
+df_playlists_train['band'] = [x.replace("]",")") for x in df_playlists_train['band']]
+
+# LOWER SONG AND BAND
+df_playlists_train['song'] = [x.lower() for x in df_playlists_train['song']]
+df_playlists_train['band'] = [x.lower() for x in df_playlists_train['band']]
+
+# ---- CONCAT SONG AND BAND ----
+df_playlists_train['song_band'] = df_playlists_train['song'] + " [" + df_playlists_train['band'] + "]"
+
+# Rearrange columns
+df_playlists_train = df_playlists_train[['index','playlist','song_id','song','band','song_band','count']]
+
+#==============================================================================
+#
+# BUILD RECOMMENDER
+#
+#==============================================================================
+
+# ---- CREATE PLAYLIST-SONG MATRIX ----
+start_clock = time.clock()
+
+# Create song_band dummies
+#playlist_song_mat_train = pd.get_dummies(df_playlists_train['song_band'], sparse=True)
+playlist_song_mat_train = pd.get_dummies(df_playlists_train['song_band'])
+
+# Insert index and playlist columns
+playlist_song_mat_train.insert(loc=0, column='playlist', value=df_playlists_train['playlist'])
+playlist_song_mat_train.insert(loc=0, column='index', value=df_playlists_train['index'])
+
+end_clock = time.clock()
+    
+print('\n')
+print('Runtime: ', round((end_clock - start_clock)/60, 2), ' min', sep='')
+
+# CONVERT TO DASK DATAFRAME 
+start_clock = time.clock()
+dd_playlist_song_mat_train = dd.from_pandas(data=playlist_song_mat_train, npartitions=1000)
+end_clock = time.clock()
+
+print('Runtime: ', round((end_clock - start_clock)/60, 2), ' min')
+
+# CLEAR MEMORY 
+del(band_count, df_song_hash, playlist_song_mat_train, 
+    playlists_train_list, playlists_train_raw, song_count, train_raw)
+    
+# GROUP BY PLAYLIST 
+start_clock = time.clock()
+playlist_song_mat_train = dd_playlist_song_mat_train.groupby('playlist').sum().compute()
+playlist_song_mat_train.drop(columns='index', inplace=True)
+end_clock = time.clock()
+
+print('Runtime: ', round((end_clock - start_clock)/60, 2), ' min')
+
+# CLEAR MEMORY 
+del(dd_playlist_song_mat_train)
+
+# Convert every non-zero count to just 1, ie each playlist should count each unique song as appearing only once
+# regardless of how often it actually appears.
+playlist_song_mat_train = playlist_song_mat_train.astype(bool).astype(int)
+
+# ---- SAVE/LOAD DATAFRAMES ----
+import dill
+import pandas as pd
+
+# Save out dataframes
+# Dump
+#dill.dump(df_playlists_train, open("df_playlists_train.pkl", "wb"))
+#dill.dump(playlist_song_mat_train, open("playlist_song_mat_train.pkl", "wb"))
+
+# Load
+#df_playlists_train = dill.load(open("df_playlists_train.pkl", "rb"))
+#playlist_song_mat_train = dill.load(open("playlist_song_mat_train.pkl", "rb"))
+
+#==============================================================================
+#
+# RUN
+#
+#==============================================================================
+
+# ---- SONG OR BAND INQUIRY ----
+song_band_inquiry = input('What song or band do you like? ').lower()
+
+options = pd.DataFrame([col for col in playlist_song_mat_train.columns if song_band_inquiry in col])[0]
+
+while True:
+    print('\n')
+    options
+    try:
+        song_band_number = int(input('What number? '))
+    except:
+        print('\n')
+        print('*** Must input an integer. ***')
+        continue
+    else: 
+        if (song_band_number in range(0,len(options))):
+            song_band_choice = options[song_band_number]
+            break
+        else:
+            print('\n')
+            print('*** Choose a number from the table. ***')
+            continue
+            
+print('Top 3 suggested songs: ')
+for x_song_band, x_count in \
+    playlist_song_mat_train[playlist_song_mat_train[song_band_choice]==1]\
+        .sum().sort_values(ascending=False)[1:4,].iteritems():
+    print(' * ', x_song_band)
+\end{verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
