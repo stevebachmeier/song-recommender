@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Dash app
+Song recommender app
 
 @author: Steve Bachmeier
 """
@@ -22,7 +22,7 @@ import dill
 #
 #==============================================================================
 
-playlist_song_mat_train = dill.load(open("playlist_song_mat_train.pkl", "rb")) 
+playlist_song_mat_train = dill.load(open("playlist_song_mat_train_sample25.pkl", "rb")) 
 
 #==============================================================================
 #
@@ -33,7 +33,7 @@ playlist_song_mat_train = dill.load(open("playlist_song_mat_train.pkl", "rb"))
 # ---- INITIALIZE DASH ----
 app = dash.Dash(__name__)
 server = app.server
-    
+
 # ---- LAYOUT ----
 app.layout = html.Div(
     children=[
@@ -43,7 +43,7 @@ app.layout = html.Div(
             style={'color':'white', 'textAlign':'center'}
         ),
         
-#        # ---- SONG/BAND DROPDOWN ----
+        # ---- SONG/BAND DROPDOWN ----
         html.Div([
             html.Div([
                 dcc.Dropdown(
@@ -103,7 +103,7 @@ def update_output(selection):
 def suggestions(selection):
     dff = playlist_song_mat_train[playlist_song_mat_train[selection]==1].sum().sort_values(ascending=False)[1:4,].index.tolist()
     return '## The top three song recommendations are: \n * {} \n * {} \n * {}'.format(dff[0], dff[1], dff[2])
-
+             
 #==============================================================================
 #
 # RUN SERVER

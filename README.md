@@ -1,4 +1,7 @@
 # Song Recommender
+**For a less-accurate (due to Heroku's size limits) deployed app, 
+head to https://song-recommender.herokuapp.com/**
+
 **Please refer to the analysis report titled 'Report_song_recommender'. 
 Note that there are three formats available: Jupyter Notebook (.ipynb), 
 PDF (.pdf), and HTML (.html). The .ipynb file is best since it is
