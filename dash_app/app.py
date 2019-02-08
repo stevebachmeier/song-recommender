@@ -50,7 +50,7 @@ app.layout = html.Div(
                     id='options_dropdown',
                     options=[{'label':i, 'value':i} for i in 
                         playlist_song_mat_train.columns],
-                    placeholder="Search for a song and/or band"
+                    placeholder="Choose a song (search by song or band)"
                 )],
                 style={'width': '70%', 'display': 'inline-block'}
             ),
