@@ -1,0 +1,28 @@
+
+function piResponse() {
+		piSetCookie('visitor_id719653', '42443111', 3650);
+			piSetCookie('visitor_id719653-hash', '7a70b0572d34ce9a9f25e9d17f0584d1def8e654eca9a49683bb1201ae3fc15a27d0528376eca856a6bb3722cc1e4323933fb061', 3650);
+		
+		if (document.location.protocol != "https:" || (document.location.protocol == "https:" && true)) {
+		var analytics_link = document.location.protocol + "//" + "go.plot.ly/analytics?";
+		pi.tracker.visitor_id='42443111';
+
+				pi.tracker.visitor_id_sign='7a70b0572d34ce9a9f25e9d17f0584d1def8e654eca9a49683bb1201ae3fc15a27d0528376eca856a6bb3722cc1e4323933fb061';
+		
+		var variables = 'conly=true';
+		for (property in pi.tracker) {
+					variables += "&" + property + "=" + encodeURIComponent(pi.tracker[property]);
+				}
+		var headID = document.getElementsByTagName("head")[0];
+		piScriptObj[piScriptNum] = document.createElement('script');
+		piScriptObj[piScriptNum].type = 'text/javascript';
+		piScriptObj[piScriptNum].src = analytics_link + variables;
+		headID.appendChild(piScriptObj[piScriptNum]);
+		piScriptObj[piScriptNum].onload = function() { return; }
+	}
+	}
+piResponse();
+
+
+
+
